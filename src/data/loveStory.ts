@@ -216,7 +216,7 @@ export interface LoveStoryConfig {
 export const loveStory: LoveStoryConfig = {
   herName: "Ishita",
   myName: "Satyam",
-  birthdayDate: "27.10.2026",
+  birthdayDate: "18.10.2026",
 
   // Top header banner
   banner: {
@@ -232,7 +232,7 @@ export const loveStory: LoveStoryConfig = {
     photo: "./assets/birthday-kiss.jpg",
     greeting: "Happy Birthday",
     name: "Ishita",
-    date: "27.10.2026",
+    date: "18.10.2026",
     subtextLine1: "Happy Birthday, My Love",
     subtextLine2: "A letter made just for you",
     objectPosition: "center 25%",
@@ -512,7 +512,7 @@ export const loveStory: LoveStoryConfig = {
     headline: "Happy Birthday",
     greeting: "Happy Birthday, My Love",
     letterParagraphs: ["Today is all about celebrating you."],
-    dateDisplay: "27.10.2026",
+    dateDisplay: "18.10.2026",
     photo: "./assets/birthday-kiss.jpg",
     photoCaption: "Happy Birthday",
     objectPosition: "center 25%",
