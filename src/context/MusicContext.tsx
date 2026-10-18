@@ -33,9 +33,11 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
 
   useEffect(() => {
     const audio = new Audio();
-    audio.src = audioSrc;
-    audio.preload = 'metadata';
+    const resolvedSrc = audioSrc.startsWith('/') ? `.${audioSrc}` : audioSrc;
+    audio.src = resolvedSrc;
+    audio.preload = 'auto';
     audio.volume = volume;
+    audio.loop = true;
     audioRef.current = audio;
 
     const onLoadedMetadata = () => {
@@ -48,8 +50,13 @@ export const MusicProvider: React.FC<{ children: React.ReactNode }> = ({ childre
     };
 
     const onEnded = () => {
-      setIsPlaying(false);
-      setCurrentTime(0);
+      // Loop the audio continuously
+      audio.currentTime = 0;
+      audio.play().then(() => {
+        setIsPlaying(true);
+      }).catch(() => {
+        setIsPlaying(false);
+      });
     };
 
     const onError = () => {

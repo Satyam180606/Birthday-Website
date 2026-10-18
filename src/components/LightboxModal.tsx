@@ -41,6 +41,19 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ data, onClose }) =
     };
   }, [data, isVideo, onClose, pauseMusic]);
 
+  useEffect(() => {
+    if (data && isVideo && videoRef.current) {
+      videoRef.current.play().catch(() => {
+        if (videoRef.current) {
+          videoRef.current.muted = true;
+          videoRef.current.play().catch(() => {});
+        }
+      });
+    }
+  }, [data, isVideo]);
+
+  const resolvedSrc = data?.src?.startsWith('/') ? `.${data.src}` : data?.src;
+
   return (
     <AnimatePresence>
       {data && (
@@ -80,7 +93,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({ data, onClose }) =
               {isVideo ? (
                 <video
                   ref={videoRef}
-                  src={data.src}
+                  src={resolvedSrc}
                   controls
                   autoPlay
                   playsInline
